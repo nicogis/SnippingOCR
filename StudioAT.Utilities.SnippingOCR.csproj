@@ -164,12 +164,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
     <Content Include="edit_find.ico" />
+    <Content Include="Images\IconTray.PNG" />
+    <Content Include="Images\IconTrayMenu.png" />
+    <Content Include="Images\OCR.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
