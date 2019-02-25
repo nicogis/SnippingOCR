@@ -17,7 +17,7 @@ In icon tray you can:
 - Set language (default: unk)
 - Set format image (default: png)
 - Convert image from clipboard - Process Clipboard
-- Checked to convert image automatically from clipboard - Monitor clipboard 
-- Checked if see text converted - View Result. The text always is copied in clipboard
--  
+- Convert image automatically from clipboard with *Monitor clipboard* checked 
+- Show text converted with *View Result* checked. The text is always copied in clipboard
+  
 ![Icon Tray Menu](Images/IconTrayMenu.png)
