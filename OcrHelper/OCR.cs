@@ -7,6 +7,7 @@
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
@@ -46,9 +47,6 @@
 
             try
             {
-                
-                Clipboard.Clear();
-
                 
                 IComputerVisionClient client = new ComputerVisionClient(new ApiKeyServiceClientCredentials(key))
                 {
@@ -106,18 +104,11 @@
                     }
 
 
-                    foreach (OcrRegion c in t.Regions)
-                    {
-                        foreach (OcrLine l in c.Lines)
-                        {
-                            foreach (OcrWord w in l.Words)
-                            {
-                                text += w.Text + " ";
-                            }
-
-                            text += Environment.NewLine;
-                        }
-                    }
+                    text = string.Join("\n",
+                        t.Regions.ToList().Select(region =>
+                        string.Join("\n", region.Lines.ToList().Select(line =>
+                        string.Join(" ", line.Words.ToList().Select(word =>
+                        word.Text).ToArray())).ToArray())).ToArray());
 
 
                     if (!string.IsNullOrWhiteSpace(text))
@@ -134,10 +125,7 @@
             }
             finally
             {
-                if (destinationImage != null)
-                {
-                    destinationImage.Dispose();
-                }
+                destinationImage?.Dispose();
             }
 
             return new ResultOCR() { Success = result, Error = error, Text= text };
